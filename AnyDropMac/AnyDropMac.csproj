@@ -100,10 +100,10 @@
     <BundleResource Include="Resources\ic_icon.icns" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ShareExtension\ShareExtension.csproj">
+    <ProjectReference Include="..\AnyDropMacShareExtention\AnyDropMacShareExtention.csproj">
       <IsAppExtension>true</IsAppExtension>
       <Project>{971BF5CE-2049-45B1-AC86-62854E235E27}</Project>
-      <Name>ShareExtension</Name>
+      <Name>AnyDropMacShareExtention</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\AnyDropCore\AnyDropCore.projitems" Label="Shared" Condition="Exists('..\AnyDropCore\AnyDropCore.projitems')" />

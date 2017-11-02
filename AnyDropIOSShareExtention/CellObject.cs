@@ -1,7 +1,7 @@
 ﻿using System;
 
 using UIKit;
-namespace AnyDropShareIOS
+namespace AnyDropIOSShareExtention
 {
     public partial class CellObject : UITableViewCell
     {

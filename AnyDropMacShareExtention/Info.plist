@@ -7,7 +7,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>AnyDrop</string>
 	<key>CFBundleIdentifier</key>
-	<string>ru.xitrix.AnyDrop.ShareExtension</string>
+	<string>ru.xitrix.AnyDrop.AnyDropMacShareExtention</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>

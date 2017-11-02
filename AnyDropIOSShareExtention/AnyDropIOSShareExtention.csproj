@@ -6,7 +6,7 @@
     <ProjectGuid>{8FED8795-34BE-4493-B25B-F3AF0D1792F9}</ProjectGuid>
     <ProjectTypeGuids>{EE2C853D-36AF-4FDB-B1AD-8E90477E2198};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>AnyDropShareIOS</RootNamespace>
+    <RootNamespace>AnyDropIOSShare</RootNamespace>
     <AssemblyName>AnyDropShareIOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>

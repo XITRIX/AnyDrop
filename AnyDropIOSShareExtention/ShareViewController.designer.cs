@@ -7,7 +7,7 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace AnyDropShareIOS
+namespace AnyDropIOSShareExtention
 {
     [Register ("ShareViewController")]
     partial class ShareViewController

@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Diagnostics;
 
 using StreamExtention;
+using System.Net.NetworkInformation;
 
 namespace AnyDropCore
 {
@@ -41,6 +42,28 @@ namespace AnyDropCore
             return buffer;
         }
 
+#if __IOS__
+        public static String GetLocalIP()
+        {
+            foreach (var netInterface in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (netInterface.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 ||
+                    netInterface.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                {
+                    foreach (var addrInfo in netInterface.GetIPProperties().UnicastAddresses)
+                    {
+                        if (addrInfo.Address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            return addrInfo.Address.ToString();
+                            // use ipAddress as needed ...
+                        }
+                    }
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
+#else
+
         public static String GetLocalIP()
         {
             foreach (var addr in Dns.GetHostEntry(string.Empty).AddressList)
@@ -52,8 +75,9 @@ namespace AnyDropCore
             }
             throw new Exception("No network adapters with an IPv4 address in the system!");
         }
+#endif
 
-        public static String GetLocalDeviceName()
+            public static String GetLocalDeviceName()
         {
             return Dns.GetHostName();
             //return System.Environment.MachineName;

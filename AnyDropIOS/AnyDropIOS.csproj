@@ -134,15 +134,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AnyDropShareIOS\AnyDropShareIOS.csproj">
-      <IsAppExtension>true</IsAppExtension>
-      <Project>{8FED8795-34BE-4493-B25B-F3AF0D1792F9}</Project>
-      <Name>AnyDropShareIOS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AnyDropIOSReceiveExtention\AnyDropIOSReceiveExtention.csproj">
       <IsAppExtension>true</IsAppExtension>
       <Project>{8BCB6BC6-FFB8-4598-AC07-3FA572705248}</Project>
       <Name>AnyDropIOSReceiveExtention</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnyDropIOSShareExtention\AnyDropIOSShareExtention.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{8FED8795-34BE-4493-B25B-F3AF0D1792F9}</Project>
+      <Name>AnyDropIOSShareExtention</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

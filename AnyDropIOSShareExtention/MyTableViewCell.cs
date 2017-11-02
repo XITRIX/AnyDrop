@@ -3,7 +3,7 @@
 using Foundation;
 using UIKit;
 
-namespace AnyDropShareIOS
+namespace AnyDropIOSShareExtention
 {
     public partial class MyTableViewCell : UITableViewCell
     {

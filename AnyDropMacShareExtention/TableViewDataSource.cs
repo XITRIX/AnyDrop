@@ -2,7 +2,7 @@
 using AppKit;
 using Foundation;
 
-namespace ShareExtension
+namespace AnyDropMacShareExtention
 {
     public class TableViewDataSource : NSTableViewDataSource
     {

@@ -29,7 +29,7 @@ namespace AnyDropIOSReceiveExtention
             base.ViewDidLoad();
 
             new Thread(Network.BroadcastReceiverThread).Start();
-            Network.GetFileIOS(this);
+            Network.GetFile(this);
 
             // Do any additional setup after loading the view.
         }

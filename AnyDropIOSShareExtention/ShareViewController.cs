@@ -11,7 +11,7 @@ using Social;
 
 using AnyDropCore;
 
-namespace AnyDropShareIOS
+namespace AnyDropIOSShareExtention
 {
     public partial class ShareViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate
     {
@@ -164,7 +164,7 @@ namespace AnyDropShareIOS
             {
                 byte[] data = client.Receive(ref from);
                 String datagram = Encoding.UTF8.GetString(data);
-                if (from.Address.ToString().Equals(Utils.GetLocalIP()))
+                if (from.Address.ToString().Equals(Utils.GetLocalIP()))// || datagram.Replace(Network.AGREE, "").Equals(Utils.GetLocalDeviceName()))
                 {
                     continue;
                 }

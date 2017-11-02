@@ -7,7 +7,9 @@ using System.Threading;
 using System.Diagnostics;
 using System.Collections.Generic;
 
+#if __IOS__
 using UIKit;
+#endif
 
 namespace AnyDropCore
 {
@@ -64,7 +66,7 @@ namespace AnyDropCore
             UdpClient client = new UdpClient();
             client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             client.ExclusiveAddressUse = false;
-            client.Send(Encoding.UTF8.GetBytes(message), Encoding.UTF8.GetBytes(message).Length, ip, PORT_TRANSFER );
+            client.Send(Encoding.UTF8.GetBytes(message), Encoding.UTF8.GetBytes(message).Length, ip, PORT_TRANSFER);
             client.Close();
         }
 
@@ -95,7 +97,8 @@ namespace AnyDropCore
             Utils.SendSocketMessage(socket, Encoding.UTF8.GetBytes(FILE));
             Utils.SendSocketMessage(socket, Encoding.UTF8.GetBytes(Utils.GetLocalDeviceName()));
             Utils.SendSocketMessage(socket, Utils.IntToByteArray(names.Count));
-            for (int i = 0; i < names.Count; i++) {
+            for (int i = 0; i < names.Count; i++)
+            {
                 Utils.SendSocketMessage(socket, Encoding.UTF8.GetBytes(Path.GetFileName(names[i])));
                 Utils.SendSocketMessage(socket, bytes[i]);
             }
@@ -107,6 +110,84 @@ namespace AnyDropCore
             Utils.SendSocketMessage(socket, Encoding.UTF8.GetBytes(Utils.GetLocalDeviceName()));
             Utils.SendSocketMessage(socket, Encoding.UTF8.GetBytes(link));
         }
+
+#if __IOS__
+        public static void GetFile(UIViewController view)
+        {
+
+            TcpListener server = new TcpListener(IPAddress.Any, PORT_TRANSFER);
+            server.Start();
+
+            while (true)
+            {
+                Console.Write("Waiting for a connection... ");
+                TcpClient client = server.AcceptTcpClient();
+                Console.WriteLine("Connected!");
+
+                String type = Encoding.UTF8.GetString(Utils.ReceiveSocketMessage(client));
+                String hostName = Encoding.UTF8.GetString(Utils.ReceiveSocketMessage(client));
+                if (type.Equals(FILE))
+                {
+                    Boolean confirm = false;
+                    int fileCount = Utils.ByteArrayToInt(Utils.ReceiveSocketMessage(client));
+                    String fileName = Encoding.UTF8.GetString(Utils.ReceiveSocketMessage(client));
+
+                    String message = "";
+                    if (fileCount == 1)
+                        message = "Файл " + fileName + " от\n" + "«" + hostName + "»";
+                    else
+                        message = "Файлы: (" + fileCount + "шт.) от\n" + "«" + hostName + "»";
+
+                    var alert = UIAlertController.Create("AnyDrop", message, UIAlertControllerStyle.Alert);
+                    alert.AddAction(UIAlertAction.Create("Принять", UIAlertActionStyle.Default, (obj) =>
+                    {
+                        for (int i = 0; i < fileCount; i++)
+                        {
+
+                            if (i == 0)
+                            {
+
+                            }
+                            if (confirm)
+                            {
+                                byte[] file = Utils.ReceiveSocketMessage(client);
+
+                                String path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Downloads/" + fileName;
+                                Console.WriteLine(path);
+                                if (File.Exists(path))
+                                {
+                                    int count = 1;
+                                    String rootPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Downloads/";
+                                    String fileNameNoExt = Path.GetFileNameWithoutExtension(path);
+                                    String ext = Path.GetExtension(path);
+                                    while (File.Exists(rootPath + fileNameNoExt + "_" + count + ext))
+                                    {
+                                        count++;
+                                    }
+                                    path = rootPath + fileNameNoExt + "_" + count + ext;
+                                }
+                                File.Create(path).Write(file, 0, file.Length);
+                            }
+                            else
+                                break;
+                        }
+                    }));
+                }
+                else if (type.Equals(LINK))
+                {
+                    String link = Encoding.UTF8.GetString(Utils.ReceiveSocketMessage(client));
+                    var alert = UIAlertController.Create("AnyDrop", "Ссылка " + link + "\nот " + "«" + hostName + "»", UIAlertControllerStyle.Alert);
+                    alert.AddAction(UIAlertAction.Create("Принять", UIAlertActionStyle.Default, (obj) =>
+                    {
+
+                    }));
+                    view.PresentViewController(alert, true, null);
+                }
+
+                client.Close();
+            }
+        }
+        #else
 
         public static void GetFile()
         {
@@ -187,80 +268,7 @@ namespace AnyDropCore
                 client.Close();
             }
         }
-
-        public static void GetFileIOS(UIViewController view)
-        {
-
-            TcpListener server = new TcpListener(IPAddress.Any, PORT_TRANSFER);
-            server.Start();
-
-            while (true)
-            {
-                Console.Write("Waiting for a connection... ");
-                TcpClient client = server.AcceptTcpClient();
-                Console.WriteLine("Connected!");
-
-                String type = Encoding.UTF8.GetString(Utils.ReceiveSocketMessage(client));
-                String hostName = Encoding.UTF8.GetString(Utils.ReceiveSocketMessage(client));
-                if (type.Equals(FILE))
-                {
-                    Boolean confirm = false;
-                    int fileCount = Utils.ByteArrayToInt(Utils.ReceiveSocketMessage(client));
-                    String fileName = Encoding.UTF8.GetString(Utils.ReceiveSocketMessage(client));
-
-                    String message = "";
-                    if (fileCount == 1)
-                        message = "Файл " + fileName + " от\n" + "«" + hostName + "»";
-                    else
-                        message = "Файлы: (" + fileCount + "шт.) от\n" + "«" + hostName + "»";
-
-                    var alert = UIAlertController.Create("AnyDrop", message, UIAlertControllerStyle.Alert);
-                    alert.AddAction(UIAlertAction.Create("Принять", UIAlertActionStyle.Default, (obj) => {
-                        for (int i = 0; i < fileCount; i++)
-                        {
-
-                            if (i == 0)
-                            {
-                                
-                            }
-                            if (confirm)
-                            {
-                                byte[] file = Utils.ReceiveSocketMessage(client);
-
-                                String path = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Downloads/" + fileName;
-                                Console.WriteLine(path);
-                                if (File.Exists(path))
-                                {
-                                    int count = 1;
-                                    String rootPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/Downloads/";
-                                    String fileNameNoExt = Path.GetFileNameWithoutExtension(path);
-                                    String ext = Path.GetExtension(path);
-                                    while (File.Exists(rootPath + fileNameNoExt + "_" + count + ext))
-                                    {
-                                        count++;
-                                    }
-                                    path = rootPath + fileNameNoExt + "_" + count + ext;
-                                }
-                                File.Create(path).Write(file, 0, file.Length);
-                            }
-                            else
-                                break;
-                        }
-                    }));
-                }
-                else if (type.Equals(LINK))
-                {
-                    String link = Encoding.UTF8.GetString(Utils.ReceiveSocketMessage(client));
-                    var alert = UIAlertController.Create("AnyDrop", "Ссылка " + link + "\nот " + "«" + hostName + "»", UIAlertControllerStyle.Alert);
-                    alert.AddAction(UIAlertAction.Create("Принять", UIAlertActionStyle.Default, (obj) => {
-                        
-                    }));
-                    view.PresentViewController(alert, true, null);
-                }
-
-                client.Close();
-            }
-        }
+        #endif
 
     }
 

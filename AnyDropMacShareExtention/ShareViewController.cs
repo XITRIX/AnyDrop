@@ -12,7 +12,7 @@ using System.Text;
 
 using AnyDropCore;
 
-namespace ShareExtension
+namespace AnyDropMacShareExtention
 {
     public partial class ShareViewController : NSViewController, INSTableViewDataSource, INSTableViewDelegate
     {
