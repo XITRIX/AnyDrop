@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{D01A98ED-3848-4423-AF33-103DBF96237A}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>AnyDropIOS</RootNamespace>
+    <AssemblyName>AnyDropIOS</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer: xitrix@bk.ru (XZD36HG6YQ)</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebuggerPort>14117</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <CodesignProvision>iOS Team Provisioning Profile: ru.xitrix.AnyDrop</CodesignProvision>
+    <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
+    <MtouchFloat32>true</MtouchFloat32>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer: xitrix@bk.ru (XZD36HG6YQ)</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>iOS Team Provisioning Profile: ru.xitrix.AnyDrop</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer: xitrix@bk.ru (XZD36HG6YQ)</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>iOS Team Provisioning Profile: ru.xitrix.AnyDrop</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer: xitrix@bk.ru (XZD36HG6YQ)</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>18450</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>iOS Team Provisioning Profile: ru.xitrix.AnyDrop</CodesignProvision>
+    <IOSDebugOverWiFi>true</IOSDebugOverWiFi>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\App Store.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPad notification iOS 7,11.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPad notification iOS 7,11%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPad Settings.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPad Settings%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPad Spotlight iOS 7,9.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPad Spotlight iOS 7,9%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPad Pro Icon iOS 9%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPad App Icon iOS 7,9.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPad App Icon iOS 7,9%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPhone notification iOS 7,11%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPhone notification iOS 7,11%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPhone Spotlight iOS 5,6 &amp; Settings%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPhone Spotlight iOS 5,6 &amp; Settings%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPhone Spotlight iOS 7,9%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPhone Spotlight iOS 7,9%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPhone App Icon iOS 7,9%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iPhone App Icon iOS 7,9%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnyDropShareIOS\AnyDropShareIOS.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{8FED8795-34BE-4493-B25B-F3AF0D1792F9}</Project>
+      <Name>AnyDropShareIOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnyDropIOSReceiveExtention\AnyDropIOSReceiveExtention.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{8BCB6BC6-FFB8-4598-AC07-3FA572705248}</Project>
+      <Name>AnyDropIOSReceiveExtention</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>
